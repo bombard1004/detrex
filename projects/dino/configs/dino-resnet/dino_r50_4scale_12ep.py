@@ -23,7 +23,7 @@ train.clip_grad.params.max_norm = 0.1
 train.clip_grad.params.norm_type = 2
 
 # set training devices
-train.device = "cuda"
+train.device = "cpu"
 model.device = train.device
 
 # modify optimizer config
