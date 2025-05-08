@@ -29,6 +29,8 @@ from detectron2.structures import Boxes, ImageList, Instances
 from detectron2.utils.events import get_event_storage
 from detectron2.data.detection_utils import convert_image_to_rgb
 
+import time
+
 
 class DINO(nn.Module):
     """Implement DAB-Deformable-DETR in `DAB-DETR: Dynamic Anchor Boxes are Better Queries for DETR
@@ -186,7 +188,9 @@ class DINO(nn.Module):
             img_masks = images.tensor.new_zeros(batch_size, H, W)
 
         # original features
+        t = time.time()
         features = self.backbone(images.tensor)  # output feature dict
+        print(f"backbone time: ${(time.time() - t):.2f}s")
 
         # project backbone features to the reuired dimension of transformer
         # we use multi-scale features in DINO
