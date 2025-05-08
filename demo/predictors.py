@@ -12,6 +12,8 @@ from detectron2.structures import Instances
 from detectron2.utils.video_visualizer import VideoVisualizer
 from detectron2.utils.visualizer import ColorMode, Visualizer
 
+import time
+
 
 def filter_predictions_with_confidence(predictions, confidence_threshold=0.5):
     if "instances" in predictions:
@@ -204,7 +206,9 @@ class DefaultPredictor:
             image = torch.as_tensor(image.astype("float32").transpose(2, 0, 1))
 
             inputs = {"image": image, "height": height, "width": width}
+            t = time.time()
             predictions = self.model([inputs])[0]
+            print(f"model time: {(time.time() - t):.2f}s")
             return predictions
 
 
