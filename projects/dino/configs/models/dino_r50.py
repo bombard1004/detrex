@@ -74,7 +74,7 @@ model = L(DINO)(
     ),
     embed_dim=256,
     num_classes=80,
-    num_queries=900,
+    num_queries=500,
     aux_loss=True,
     criterion=L(DINOCriterion)(
         num_classes="${..num_classes}",
