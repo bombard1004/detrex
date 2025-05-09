@@ -17,7 +17,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from bitlinear import BitLinear
+from .bitlinear import BitLinear
 
 
 class MLP(nn.Module):
