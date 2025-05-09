@@ -211,9 +211,11 @@ def do_train(args, cfg):
     # instantiate optimizer
     cfg.optimizer.params.model = model
     optim = instantiate(cfg.optimizer)
+    logger.info("!!!")
 
     # build training loader
     train_loader = instantiate(cfg.dataloader.train)
+    logger.info("!!!")
     
     # create ddp model
     model = create_ddp_model(model, **cfg.train.ddp)
