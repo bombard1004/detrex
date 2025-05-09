@@ -17,6 +17,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+from bitlinear import BitLinear
+
 
 class MLP(nn.Module):
     """The implementation of simple multi-layer perceptron layer
@@ -101,13 +103,13 @@ class FFN(nn.Module):
         for _ in range(num_fcs - 1):
             layers.append(
                 nn.Sequential(
-                    nn.Linear(in_channels, feedforward_dim, bias=fc_bias),
+                    BitLinear(in_channels, feedforward_dim, bias=fc_bias),
                     self.activation,
                     nn.Dropout(ffn_drop),
                 )
             )
             in_channels = feedforward_dim
-        layers.append(nn.Linear(feedforward_dim, output_dim, bias=fc_bias))
+        layers.append(BitLinear(feedforward_dim, output_dim, bias=fc_bias))
         layers.append(nn.Dropout(ffn_drop))
         self.layers = nn.Sequential(*layers)
         self.add_identity = add_identity

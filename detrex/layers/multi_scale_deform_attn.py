@@ -32,6 +32,7 @@ import torch.nn.functional as F
 from torch.autograd import Function
 from torch.autograd.function import once_differentiable
 from torch.nn.init import constant_, xavier_uniform_
+from bitlinear import BitLinear
 
 
 # helpers
@@ -190,10 +191,10 @@ class MultiScaleDeformableAttention(nn.Module):
         self.num_levels = num_levels
         self.num_points = num_points
         # n_heads * n_points and n_levels for multi-level feature inputs
-        self.sampling_offsets = nn.Linear(embed_dim, num_heads * num_levels * num_points * 2)
-        self.attention_weights = nn.Linear(embed_dim, num_heads * num_levels * num_points)
-        self.value_proj = nn.Linear(embed_dim, embed_dim)
-        self.output_proj = nn.Linear(embed_dim, embed_dim)
+        self.sampling_offsets = BitLinear(embed_dim, num_heads * num_levels * num_points * 2)
+        self.attention_weights = BitLinear(embed_dim, num_heads * num_levels * num_points)
+        self.value_proj = BitLinear(embed_dim, embed_dim)
+        self.output_proj = BitLinear(embed_dim, embed_dim)
 
         self.init_weights()
 

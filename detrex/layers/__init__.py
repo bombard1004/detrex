@@ -55,3 +55,5 @@ from .denoising import (
     GenerateDNQueries,
 )
 from .shape_spec import ShapeSpec
+
+from .bitlinear import BitLinear
