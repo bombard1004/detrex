@@ -212,6 +212,7 @@ def do_train(args, cfg):
     cfg.optimizer.params.model = model
     optim = instantiate(cfg.optimizer)
     logger.info(f"{cfg.dataloader.train}")
+    logger.info(f"{type(cfg.dataloader.train)}")
 
     # build training loader
     train_loader = instantiate(cfg.dataloader.train)
