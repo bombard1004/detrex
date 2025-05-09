@@ -200,6 +200,9 @@ def do_train(args, cfg):
                 checkpointer (dict)
                 ddp (dict)
     """
+    print(args)
+    print(cfg)
+
     model = instantiate(cfg.model)
     logger = logging.getLogger("detectron2")
     logger.info("Model:\n{}".format(model))
