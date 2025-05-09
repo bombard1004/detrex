@@ -63,6 +63,7 @@ class DetrDatasetMapper:
         mask_on=False,
         img_format="RGB",
     ):
+        print("!!!!!!!!!!!!")
         self.mask_on = mask_on
         self.augmentation = augmentation
         self.augmentation_with_crop = augmentation_with_crop
