@@ -103,13 +103,13 @@ class FFN(nn.Module):
         for _ in range(num_fcs - 1):
             layers.append(
                 nn.Sequential(
-                    BitLinear(in_channels, feedforward_dim, bias=fc_bias),
+                    BitLinear(in_channels, feedforward_dim),
                     self.activation,
                     nn.Dropout(ffn_drop),
                 )
             )
             in_channels = feedforward_dim
-        layers.append(BitLinear(feedforward_dim, output_dim, bias=fc_bias))
+        layers.append(BitLinear(feedforward_dim, output_dim))
         layers.append(nn.Dropout(ffn_drop))
         self.layers = nn.Sequential(*layers)
         self.add_identity = add_identity
