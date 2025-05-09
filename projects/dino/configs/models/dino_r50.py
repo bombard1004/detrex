@@ -56,7 +56,7 @@ model = L(DINO)(
             num_layers=6,
             post_norm=False,
             num_feature_levels="${..num_feature_levels}",
-            use_checkpoint=False
+            use_checkpoint=True
         ),
         decoder=L(DINOTransformerDecoder)(
             embed_dim=256,
@@ -67,7 +67,7 @@ model = L(DINO)(
             num_layers=6,
             return_intermediate=True,
             num_feature_levels="${..num_feature_levels}",
-            use_checkpoint=False,
+            use_checkpoint=True,
         ),
         num_feature_levels=4,
         two_stage_num_proposals="${..num_queries}",
